@@ -1,19 +1,19 @@
 class BasketCaseController < ApplicationController
+  include FruitSorting
+
   before_action :set_fruits
   before_action :set_items
 
-  def index; end
+  def index
+    render_sorted_fruits(:fruit)
+  end
 
   def order_by_fruit
-    @list_items = @list_items.sort
-    @list_items = @list_items.reverse
-    render 'basket_case/index'
+    render_sorted_fruits(:fruit)
   end
 
   def order_by_amount
-    # code here
-
-    render 'basket_case/index'
+    render_sorted_fruits(:amount)
   end
 
   private
@@ -28,5 +28,17 @@ class BasketCaseController < ApplicationController
 
     def set_items
       @list_items = @fruits
+    end
+
+    def render_sorted_fruits(key)
+      @list_items = apply_sorting(key)
+
+      render(
+        'basket_case/index',
+        locals: {
+          list_items: @list_items,
+          order: toggle_order
+        }
+      )
     end
 end
