@@ -1,4 +1,6 @@
 class BasketCaseController < ApplicationController
+  include FruitSorting
+
   before_action :set_fruits
   before_action :set_items
 
@@ -11,8 +13,7 @@ class BasketCaseController < ApplicationController
   end
 
   def order_by_amount
-    # code here
-
+    apply_sorting(:amount)
     render 'basket_case/index'
   end
 
