@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <td>
+        Fruit Name
+      </td>
+      <td>
+        Amount
+      </td>
+    <tr>
+  </thead>
+  <tbody>
+    <% list_items.each do |name, amount| %>
+      <tr>
+        <td>
+          <%= name %>
+        </td>
+        <td>
+          <%= amount %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
